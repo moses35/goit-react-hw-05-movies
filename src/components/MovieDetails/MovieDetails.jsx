@@ -2,7 +2,12 @@ import { useEffect, useState, useRef, Suspense } from 'react';
 import { Outlet, useParams, NavLink, useLocation } from 'react-router-dom';
 import fetchQuery from 'servises/fetchQuery';
 import notFound from 'images/notFound.png';
-import { Block, BtnBlock } from 'components/MovieDetails/MovieDetails.styled';
+import {
+  Block,
+  BtnBlock,
+  InfoBlock,
+  Info,
+} from 'components/MovieDetails/MovieDetails.styled';
 import { Img } from 'components/App/App.styled';
 
 const MovieDetails = () => {
@@ -43,25 +48,30 @@ const MovieDetails = () => {
           <button>Back</button>
         </NavLink>
       </BtnBlock>
-      <div>
-        {posterPath && (
-          <Img
-            src={'https://image.tmdb.org/t/p/w500' + posterPath}
-            alt={originalTitle}
-          />
-        )}
-        {!posterPath && <Img src={notFound} alt={originalTitle} />}
-        <h1>{originalTitle || 'Not found'}</h1>
-        <p>{voteAverage || 'Not found'}</p>
-        <h2>Overview </h2>
-        <p>{overview || 'Not found'}</p>
-        <h2>Genres</h2>
-        <p>
-          {genres.map(item => (
-            <span key={item.name}>{item.name + ' ' || 'Not found'}</span>
-          ))}
-        </p>
-      </div>
+      <InfoBlock>
+        <div>
+          {posterPath && (
+            <Img
+              src={'https://image.tmdb.org/t/p/w500' + posterPath}
+              alt={originalTitle}
+            />
+          )}
+          {!posterPath && <Img src={notFound} alt={originalTitle} />}
+        </div>
+        <div>
+          <h1>{originalTitle || 'Not found'}</h1>
+          <p>{voteAverage || 'Not found'}</p>
+          <h2>Overview </h2>
+          <Info>{overview || 'Not found'}</Info>
+          <h2>Genres</h2>
+          <p>
+            {genres.map(item => (
+              <span key={item.name}>{item.name + ' ' || 'Not found'}</span>
+            ))}
+          </p>
+        </div>
+      </InfoBlock>
+      <p>Additional information</p>
       <ul>
         <li>
           <NavLink to="cast" state={{ from: location.state?.from }}>

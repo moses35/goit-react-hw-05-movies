@@ -15,3 +15,10 @@ export const Nav = styled.nav`
 export const BtnBlock = styled.nav`
   margin-bottom: 20px;
 `;
+export const InfoBlock = styled.div`
+  display: flex;
+  gap: 50px;
+`;
+export const Info = styled.p`
+  max-width: 1250px;
+`;
